@@ -4,14 +4,29 @@ $(function() {
 	
 	var $newtask = $('#new_task');
 
-	var $listitem= $('#list_items'); 
+	var $listitem= $('#item'); 
 
+	var petsTemplate = _.template($('#pets-template').html());
+
+	var $temp= $('#template');
+
+	var pets = [
+  {name: "Sprinkles", species: "cat"},
+  {name: "Bagel", species: "dog"},
+  {name: "Fluffy", species: "dinosaur"}];
+
+  _.each(pets, function (pet, index) {
+  var $pet = $(petsTemplate(pet));
+  $pet.attr('data-index', index);
+  $petsList.append($pet);
+});
+  
 	$newtask.on('submit', function(event) {
 		event.preventDefault();
-		var UL = $('#list_items').val();
+		var UL = $('#taskName').val();
 		console.log(UL);
 
-	duties.push(UL);
+	$taskname.push(UL);
 
 	$listitem.val("");
 
@@ -19,9 +34,17 @@ $(function() {
 });
 
  $taskname.on('click', '.item', function() {
-    $(this).addClass('check');
+    // check line 23 out changed the paramater in addClass() from checked to done.
+    $(this).addClass('done');
     $(this).animate({opacity: '0.50'}, 1000);
   });
 
+ $( "#item" ).click(function() {
+  	$(this).addClass('done');
 });
 
+
+
+});
+
+var duties=["beer","beer","beer"];

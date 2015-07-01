@@ -1,29 +1,35 @@
 $(function() {
 
-  var $newtask = $('#newtask');
+	var $taskname= $('#task_name');
+	
+	var $newtask = $('#new_task');
 
-  var $taskname = $('#task_name');
+	var $listitem= $('#item'); 
 
-  var $list = $('#task_list');
+	$newtask.on('submit', function(event) {
+		event.preventDefault();
+		var UL = $('#taskName').val();
+		console.log(UL);
 
-  $taskname.on('submit', function(event) {
-    event.preventDefault();
-    var listtask = $('#task_name').val();
-    console.log(listtask);
+	$taskname.push(UL);
 
-    // store our new shopping list item
-    dutylist.push(listtask);
+	$listitem.val("");
 
-    // clear the form
-    $list.val("");
+	$taskname.append('<li class="item">'+UL+'</li>');
+});
 
-    // append our new item to the page's shopping list
-    $newtask.append('<li class="item">' + listItem + '</li>');
-  });
-
-  $newtask.on('click', '.item', function() {
-    $(this).addClass('purchased');
+ $taskname.on('click', '.item', function() {
+    // check line 23 out changed the paramater in addClass() from checked to done.
+    $(this).addClass('done');
     $(this).animate({opacity: '0.50'}, 1000);
   });
 
+ $( "#item" ).click(function() {
+  	$(this).addClass('done');
 });
+
+
+
+});
+
+var duties=["beer","beer","beer"];
